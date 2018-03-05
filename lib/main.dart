@@ -3,39 +3,25 @@ import 'ShoppingListItem.dart';
 
 void main() {
   runApp(new MaterialApp(
-    title: "Shop",
-    home: new Counter(),
+    title: "YiTiao",
+    home: new ContainerDemo(),
   ));
 }
 
-class Counter extends StatefulWidget {
-  @override
-  _CounterState createState() => new _CounterState();
-}
-
-class _CounterState extends State<Counter> {
-  int _count = 0;
-
-  void _increment() {
-    setState(() {
-      _count += 1;
-    });
-  }
-
+class ContainerDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(
-        title: new Text('Flutter 实例'),
-      ),
-      body: new Center(
-        child: new Text('按钮点击 $_count 次'),
-      ),
-      floatingActionButton: new FloatingActionButton(
-        onPressed: _increment,
-        tooltip: '增加',
-        child: new Icon(Icons.add),
-      ),
-    );
+    return new Center(
+        child: new Container(
+      width: 300.0,
+      height: 400.0,
+      decoration: new BoxDecoration(
+          color: const Color(0xfffce5cd),
+          border: new Border.all(
+            color: const Color(0xff6d9eeb),
+            width: 8.0,
+          )),
+      child: new Text("Hello World")
+    ));
   }
 }
