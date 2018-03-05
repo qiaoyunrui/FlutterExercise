@@ -45,7 +45,8 @@ class _ShoppingListState extends State<ShoppingList> {
 final List<Product> _kProducts = <Product>[
   new Product(name: "鸡蛋🥚"),
   new Product(name: "香蕉🍌"),
-  new Product(name: "西瓜🍉")
+  new Product(name: "西瓜🍉"),
+  new Product(name: "苹果🍎")
 ];
 
 void main() {
