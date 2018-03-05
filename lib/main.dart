@@ -1,25 +1,24 @@
 import 'package:flutter/material.dart';
 import 'ShoppingListItem.dart';
 
-class ShoppingList extends StatefulWidget {
-  final List<Product> products;
-
-  ShoppingList({Key key, this.products}) : super(key: key);
-
-  @override
-  _ShoppingListState createState() => new _ShoppingListState();
+void main() {
+  runApp(new MaterialApp(
+    title: "Shop",
+    home: new Counter(),
+  ));
 }
 
-class _ShoppingListState extends State<ShoppingList> {
-  Set<Product> _shoppingCart = new Set<Product>();
+class Counter extends StatefulWidget {
+  @override
+  _CounterState createState() => new _CounterState();
+}
 
-  void _handleCartChanged(Product product, bool inCart) {
+class _CounterState extends State<Counter> {
+  int _count = 0;
+
+  void _increment() {
     setState(() {
-      if (inCart) {
-        _shoppingCart.add(product);
-      } else {
-        _shoppingCart.remove(product);
-      }
+      _count += 1;
     });
   }
 
@@ -27,33 +26,16 @@ class _ShoppingListState extends State<ShoppingList> {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-        title: new Text("购物清单"),
+        title: new Text('Flutter 实例'),
       ),
-      body: new ListView(
-        children: widget.products.map((Product product) {
-          return new ShoppingListItem(
-            product: product,
-            inCart: _shoppingCart.contains(product),
-            onCartChanged: _handleCartChanged,
-          );
-        }).toList(),
+      body: new Center(
+        child: new Text('按钮点击 $_count 次'),
+      ),
+      floatingActionButton: new FloatingActionButton(
+        onPressed: _increment,
+        tooltip: '增加',
+        child: new Icon(Icons.add),
       ),
     );
   }
-}
-
-final List<Product> _kProducts = <Product>[
-  new Product(name: "鸡蛋🥚"),
-  new Product(name: "香蕉🍌"),
-  new Product(name: "西瓜🍉"),
-  new Product(name: "苹果🍎")
-];
-
-void main() {
-  runApp(new MaterialApp(
-    title: "Shop",
-    home: new ShoppingList(
-      products: _kProducts,
-    ),
-  ));
 }
