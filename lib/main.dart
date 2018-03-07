@@ -14,32 +14,24 @@ class LayoutDemo extends StatelessWidget {
       appBar: new AppBar(
         title: new Text("水平方向布局"),
       ),
-      body: new Column(
-        children: <Widget>[
-          new RaisedButton(
-            onPressed: () {
-              print("点红色按钮事件");
-            },
-            color: const Color(0xffcc0000),
-            child: new Text("红色按钮"),
-          ),
-          new Expanded(
-            child: new RaisedButton(
-              onPressed: () {
-                print("点击黄色按钮事件");
-              },
-              color: const Color(0xfff1c232),
-              child: new Text("黄色按钮"),
-            ),
-          ),
-          new RaisedButton(
-            onPressed: () {
-              print("点击粉色按钮事件");
-            },
-            color: const Color(0xffea9999),
-            child: new Text("粉色按钮"),
-          )
-        ],
+      body: new Center(
+        child: new Stack(
+          children: <Widget>[
+            new Image.network(
+                'http://img2.cxtuku.com/00/13/12/s97783873391.jpg'),
+            new Positioned(
+                left: 25.0,
+                right: 25.0,
+                top: 45.0,
+                child: new Text(
+                  'AAAAAAAAAAAAA',
+                  style: new TextStyle(
+                    fontSize: 20.0,
+                    fontFamily: 'serif',
+                  ),
+                ))
+          ],
+        ),
       ),
     );
   }
