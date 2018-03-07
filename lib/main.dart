@@ -14,8 +14,9 @@ class LayoutDemo extends StatelessWidget {
         appBar: new AppBar(
           title: new Text("水平方向布局"),
         ),
-        body: new Center(
-          child: new Text("我在屏幕中心🚗🚕🚙"),
+        body: new Padding(
+          padding: const EdgeInsets.all(60.0),
+          child: new Image.network("http://up.qqjia.com/z/25/tu32710_4.jpg"),
         ));
   }
 }
