@@ -12,19 +12,18 @@ class LayoutDemo extends StatelessWidget {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-        title: new Text("水平方向布局"),
+        title: new Text("Hello World"),
       ),
-      body: new DecoratedBox(
-        decoration: new BoxDecoration(
-          gradient: new LinearGradient(
-            colors: <Color>[const Color(0xff00ffff), const Color(0xffff6eb4)],
-            begin: const FractionalOffset(0.0, 0.0),
-            end: const FractionalOffset(1.0, 1.0),
+      body: new Center(
+        child: new Opacity(
+          opacity: 0.1,
+          child: new Container(
+            width: 250.0,
+            height: 100.0,
+            decoration: new BoxDecoration(
+              color: const Color(0xff000000),
+            ),
           ),
-        ),
-        child: new Container(
-          width: 300.0,
-          height: 300.0,
         ),
       ),
     );
