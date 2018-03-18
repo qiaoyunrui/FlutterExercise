@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:study_flutter/navigation_icon_view.dart';
 
 void main() {
   runApp(new MaterialApp(
@@ -7,24 +8,18 @@ void main() {
   ));
 }
 
-class LayoutDemo extends StatelessWidget {
+class CustomIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(
-        title: new Text("Hello World"),
-      ),
-      body: new Center(
-        child: new Opacity(
-          opacity: 0.1,
-          child: new Container(
-            width: 250.0,
-            height: 100.0,
-            decoration: new BoxDecoration(
-              color: const Color(0xff000000),
-            ),
-          ),
-        ),
+    //获取当前图标主题，创建与此图标相同的图标主题
+    final IconThemeData iconTheme = IconTheme.of(context);
+    return new Container(
+      margin: const EdgeInsets.all(4.0),
+      //图标主题的宽度减少 8.0
+      width: iconTheme.size - 8.0,
+      height: iconTheme.size - 8.0,
+      decoration: new BoxDecoration(
+        color: iconTheme.color,
       ),
     );
   }
@@ -35,37 +30,125 @@ class MenusDemo extends StatefulWidget {
   _MenusDemoState createState() => new _MenusDemoState();
 }
 
-class _MenusDemoState extends State<MenusDemo> {
-  String _bodyStr = "显示菜单的点击";
+class _MenusDemoState extends State<MenusDemo> with TickerProviderStateMixin {
+  int _currentIndex = 2;
+  BottomNavigationBarType _type = BottomNavigationBarType.shifting;
+  List<NavigationIconView> _navigationViews;
 
-  @override
+  /// 在对象插入到树种使用，
+  /// 框架将为它创建的每个 State(状态) 对象调用此方法一次
+  void initState() {
+    super.initState();
+    _navigationViews = <NavigationIconView>[
+      new NavigationIconView(
+        icon: new Icon(Icons.access_alarm),
+        title: new Text("成就"),
+        color: Colors.deepPurple[500],
+        vsync: this,
+      ),
+      new NavigationIconView(
+        icon: new CustomIcon(),
+        title: new Text("行动"),
+        color: Colors.deepOrange[500],
+        vsync: this,
+      ),
+      new NavigationIconView(
+        icon: new Icon(Icons.cloud),
+        title: new Text("人物"),
+        color: Colors.teal[500],
+        vsync: this,
+      ),
+      new NavigationIconView(
+        icon: new Icon(Icons.event_available),
+        title: new Text("设置"),
+        color: Colors.pink[500],
+        vsync: this,
+      )
+    ];
+    for (NavigationIconView view in _navigationViews) {
+      view.controller.addListener(_rebuild);
+    }
+    _navigationViews[_currentIndex].controller.value = 1.0;
+  }
+
+  void dispose() {
+    super.dispose();
+    for (NavigationIconView view in _navigationViews) {
+      view.controller.dispose();
+    }
+  }
+
+  //动画控制器的值更改时的操作
+  void _rebuild() {
+    //通知框架此对象内部状态已更改
+    setState(() {
+      //重建，以便为视图创建动画
+    });
+  }
+
+  Widget _buildTransitionStack() {
+    final List<FadeTransition> transitions = <FadeTransition>[];
+    for (NavigationIconView view in _navigationViews) {
+      //在存储不透明度转换的列表中添加 transition 函数的返回值
+      transitions.add(view.transition(_type, context));
+    }
+    transitions.sort((FadeTransition a, FadeTransition b) {
+      final Animation<double> aAnimation = a.listenable;
+      final Animation<double> bAnimation = b.listenable;
+      double aValue = aAnimation.value;
+      double bValue = bAnimation.value;
+      return aValue.compareTo(bValue);
+    });
+    return new Stack(
+      children: transitions,
+    );
+  }
+
   Widget build(BuildContext context) {
+    final BottomNavigationBar bottomNavigationBar = new BottomNavigationBar(
+      items: _navigationViews
+          .map((NavigationIconView navigationView) => navigationView.item)
+          .toList(),
+      currentIndex: _currentIndex,
+      type: _type,
+      onTap: (int index) {
+        setState(() {
+          //当前选择的地步导航栏项目，开始反向运行此动画
+          _navigationViews[_currentIndex].controller.reverse();
+          _currentIndex = index;
+          //当前选择的底部导航栏项目，开始正向运行此动画
+          _navigationViews[_currentIndex].controller.forward();
+        });
+      },
+    );
     return new Scaffold(
       appBar: new AppBar(
-        title: new Text("MenuDemo"),
+        title: new Text("navigation demo"),
         actions: <Widget>[
-          new PopupMenuButton(
-            itemBuilder: (BuildContext context) => <PopupMenuItem<String>>[
-                  new PopupMenuItem<String>(
-                    child: new Text("选项一"),
-                    value: "选项一的值",
-                  ),
-                  new PopupMenuItem<String>(
-                    child: new Text("选项二"),
-                    value: "选项二的值",
-                  )
-                ],
-            onSelected: (String value) {
+          new PopupMenuButton<BottomNavigationBarType>(
+            itemBuilder:
+                (BuildContext context) =>
+            <PopupMenuItem<BottomNavigationBarType>>[
+              new PopupMenuItem<BottomNavigationBarType>(
+                child: new Text("Fixed"),
+                value: BottomNavigationBarType.fixed,
+              ),
+              new PopupMenuItem<BottomNavigationBarType>(
+                value: BottomNavigationBarType.shifting,
+                child: new Text("Shifting"),
+              ),
+            ],
+            onSelected: (BottomNavigationBarType value) {
               setState(() {
-                _bodyStr = value;
+                _type = value;
               });
-            },
-          )
+            },)
         ],
       ),
       body: new Center(
-        child: new Text(_bodyStr),
+        child: _buildTransitionStack(),
       ),
+      bottomNavigationBar: bottomNavigationBar,
     );
   }
 }
