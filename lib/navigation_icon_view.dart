@@ -47,15 +47,24 @@ class NavigationIconView {
     Color iconColor;
     //如果底部导航栏的位置和大小在点击时会变大
     if (type == BottomNavigationBarType.shifting) {
+      //存储颜色为图标颜色
       iconColor = _color;
     } else {
       /**
-       * 保存主题的颜色和排班值
+       *  保存质感设计主题的颜色和排版值：
+       *  使用ThemeData来配置主题控件
+       *  使用Theme.of获取当前主题
        */
       final ThemeData themeData = Theme.of(context);
+      /*
+       * 如果程序整体主题的亮度很高（需要深色文本颜色才能实现可读的对比度）
+       *  就返回程序主要部分的背景颜色作为图标颜色
+       *  否则返回控件的前景颜色作为图标颜色
+       */
       iconColor = themeData.brightness == Brightness.light
           ? themeData.primaryColor
           : themeData.accentColor;
+//      iconColor = Colors.deepPurple[300];
     }
     return new FadeTransition(
       opacity: _animation,

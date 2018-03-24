@@ -19,6 +19,7 @@ class CustomIcon extends StatelessWidget {
       width: iconTheme.size - 8.0,
       height: iconTheme.size - 8.0,
       decoration: new BoxDecoration(
+        //图标主题的颜色
         color: iconTheme.color,
       ),
     );
@@ -66,8 +67,10 @@ class _MenusDemoState extends State<MenusDemo> with TickerProviderStateMixin {
       )
     ];
     for (NavigationIconView view in _navigationViews) {
+      //每次动画控制器的值更改时调用监听器
       view.controller.addListener(_rebuild);
     }
+    //底部导航栏当前选择的动画控制器的值为 1.0
     _navigationViews[_currentIndex].controller.value = 1.0;
   }
 
@@ -80,18 +83,22 @@ class _MenusDemoState extends State<MenusDemo> with TickerProviderStateMixin {
 
   //动画控制器的值更改时的操作
   void _rebuild() {
+//    print("Hello ${_navigationViews.map((NavigationIconView value) => value.controller.value).toList()})}");
     //通知框架此对象内部状态已更改
     setState(() {
       //重建，以便为视图创建动画
     });
   }
 
+  //创建过渡堆栈
   Widget _buildTransitionStack() {
+    //存储不透明度转换的列表
     final List<FadeTransition> transitions = <FadeTransition>[];
     for (NavigationIconView view in _navigationViews) {
       //在存储不透明度转换的列表中添加 transition 函数的返回值
       transitions.add(view.transition(_type, context));
     }
+    //对存储不透明度转换的列表进行排序
     transitions.sort((FadeTransition a, FadeTransition b) {
       final Animation<double> aAnimation = a.listenable;
       final Animation<double> bAnimation = b.listenable;
