@@ -1,10 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:study_flutter/achievement_view.dart';
 import 'package:study_flutter/navigation_icon_view.dart';
 
 void main() {
+  /*runApp(new MaterialApp(
+      title: "YiTiao",
+      home: new Scaffold(
+        appBar: new AppBar(
+          title: new Text("navigation demo"),
+        ),
+        body: new Center(
+          child: new AchievementView(),
+        ),
+      );
+  )*/
   runApp(new MaterialApp(
-    title: "YiTiao",
-    home: new MenusDemo(),
+    title: "Hello",
+    home: new Scaffold(
+      appBar: new AppBar(
+        title: new Text("HelloWorld"),
+      ),
+      body: new AchievementView(),
+    ),
   ));
 }
 
@@ -133,23 +150,23 @@ class _MenusDemoState extends State<MenusDemo> with TickerProviderStateMixin {
         title: new Text("navigation demo"),
         actions: <Widget>[
           new PopupMenuButton<BottomNavigationBarType>(
-            itemBuilder:
-                (BuildContext context) =>
-            <PopupMenuItem<BottomNavigationBarType>>[
-              new PopupMenuItem<BottomNavigationBarType>(
-                child: new Text("Fixed"),
-                value: BottomNavigationBarType.fixed,
-              ),
-              new PopupMenuItem<BottomNavigationBarType>(
-                value: BottomNavigationBarType.shifting,
-                child: new Text("Shifting"),
-              ),
-            ],
+            itemBuilder: (BuildContext context) =>
+                <PopupMenuItem<BottomNavigationBarType>>[
+                  new PopupMenuItem<BottomNavigationBarType>(
+                    child: new Text("Fixed"),
+                    value: BottomNavigationBarType.fixed,
+                  ),
+                  new PopupMenuItem<BottomNavigationBarType>(
+                    value: BottomNavigationBarType.shifting,
+                    child: new Text("Shifting"),
+                  ),
+                ],
             onSelected: (BottomNavigationBarType value) {
               setState(() {
                 _type = value;
               });
-            },)
+            },
+          )
         ],
       ),
       body: new Center(
