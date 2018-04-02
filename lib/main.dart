@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:study_flutter/achievement_view.dart';
 import 'package:study_flutter/navigation_icon_view.dart';
+import 'package:study_flutter/read_and_write.dart';
 
 void main() {
   /*runApp(new MaterialApp(
@@ -14,7 +15,7 @@ void main() {
         ),
       );
   )*/
-  runApp(new MaterialApp(
+  /*runApp(new MaterialApp(
     title: "Hello",
     home: new Scaffold(
       appBar: new AppBar(
@@ -22,6 +23,10 @@ void main() {
       ),
       body: new AchievementView(),
     ),
+  ));*/
+  runApp(new MaterialApp(
+    title: 'Flutter',
+    home: new ReadAndWriteDemo(),
   ));
 }
 
