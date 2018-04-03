@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:study_flutter/achievement_view.dart';
 import 'package:study_flutter/navigation_icon_view.dart';
 import 'package:study_flutter/read_and_write.dart';
+import 'package:study_flutter/noname.dart';
 
 void main() {
   /*runApp(new MaterialApp(
       title: "YiTiao",
-      home: new Scaffold(
+      home: new Scaffold(ß
         appBar: new AppBar(
           title: new Text("navigation demo"),
         ),
@@ -26,7 +27,19 @@ void main() {
   ));*/
   runApp(new MaterialApp(
     title: 'Flutter',
-    home: new ReadAndWriteDemo(),
+    home: new Scaffold(
+      appBar: new AppBar(
+        title: new Text("navigation demo"),
+      ),
+      body: new ActionViewEcology(
+        currentEmergy: 50,
+        maximumEmergy: 100,
+        currentHunger: 30,
+        maximumHunger: 100,
+        currentMood: 20,
+        maximumMood: 100,
+      ),
+    ),
   ));
 }
 
