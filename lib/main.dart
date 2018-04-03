@@ -3,6 +3,7 @@ import 'package:study_flutter/achievement_view.dart';
 import 'package:study_flutter/navigation_icon_view.dart';
 import 'package:study_flutter/read_and_write.dart';
 import 'package:study_flutter/noname.dart';
+import 'package:study_flutter/tabs.dart';
 
 void main() {
   /*runApp(new MaterialApp(
@@ -16,16 +17,11 @@ void main() {
         ),
       );
   )*/
-  /*runApp(new MaterialApp(
-    title: "Hello",
-    home: new Scaffold(
-      appBar: new AppBar(
-        title: new Text("HelloWorld"),
-      ),
-      body: new AchievementView(),
-    ),
-  ));*/
   runApp(new MaterialApp(
+    title: "Hello",
+    home: new ScrollableTabsDemo(),
+  ));
+  /*runApp(new MaterialApp(
     title: 'Flutter',
     home: new Scaffold(
       appBar: new AppBar(
@@ -40,7 +36,7 @@ void main() {
         maximumMood: 100,
       ),
     ),
-  ));
+  ));*/
 }
 
 class CustomIcon extends StatelessWidget {
