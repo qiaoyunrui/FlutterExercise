@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:study_flutter/achievement_view.dart';
 import 'package:study_flutter/navigation_icon_view.dart';
+import 'package:study_flutter/pages.dart';
 import 'package:study_flutter/read_and_write.dart';
 import 'package:study_flutter/noname.dart';
 import 'package:study_flutter/tabs.dart';
@@ -19,7 +20,7 @@ void main() {
   )*/
   runApp(new MaterialApp(
     title: "Hello",
-    home: new ScrollableTabsDemo(),
+    home: new MyHomePage(title: "Hello?",),
   ));
   /*runApp(new MaterialApp(
     title: 'Flutter',
