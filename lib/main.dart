@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:study_flutter/bottom_card.dart';
+import 'package:study_flutter/form.dart';
+import 'package:study_flutter/navigation_icon_view.dart';
 
 void main() {
   /*runApp(new MaterialApp(
