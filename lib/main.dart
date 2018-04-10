@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:study_flutter/achievement_view.dart';
-import 'package:study_flutter/navigation_icon_view.dart';
-import 'package:study_flutter/pages.dart';
-import 'package:study_flutter/read_and_write.dart';
-import 'package:study_flutter/noname.dart';
-import 'package:study_flutter/tabs.dart';
+import 'package:study_flutter/bottom_card.dart';
 
 void main() {
   /*runApp(new MaterialApp(
@@ -20,7 +15,7 @@ void main() {
   )*/
   runApp(new MaterialApp(
     title: "Hello",
-    home: new MyHomePage(title: "Hello?",),
+    home: new MyApp(),
   ));
   /*runApp(new MaterialApp(
     title: 'Flutter',
