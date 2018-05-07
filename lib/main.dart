@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:study_flutter/font.dart';
+import 'package:study_flutter/layout.dart';
 import 'package:study_flutter/navigation_icon_view.dart';
 
 void main() {
@@ -16,7 +17,10 @@ void main() {
   )*/
   runApp(new MaterialApp(
     title: "Hello",
-    home: new FontDemo(),
+    theme: new ThemeData(
+      primarySwatch: Colors.blue,
+    ),
+    home: new LayoutDemo(),
   ));
   /*runApp(new MaterialApp(
     title: 'Flutter',
