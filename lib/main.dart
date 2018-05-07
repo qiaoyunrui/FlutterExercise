@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:study_flutter/form.dart';
+import 'package:study_flutter/font.dart';
 import 'package:study_flutter/navigation_icon_view.dart';
 
 void main() {
@@ -16,7 +16,7 @@ void main() {
   )*/
   runApp(new MaterialApp(
     title: "Hello",
-    home: new MyApp(),
+    home: new FontDemo(),
   ));
   /*runApp(new MaterialApp(
     title: 'Flutter',

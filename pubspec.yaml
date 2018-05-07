@@ -27,6 +27,10 @@ flutter:
   uses-material-design: true
   assets:
     - assets/config.json
+  fonts:
+    - family: Raleway
+      fonts:
+        - asset: fonts/Raleway-Thin.ttf
 
   # To add assets to your application, add an assets section, like this:
   # assets:
